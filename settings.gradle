@@ -1,0 +1,2 @@
+rootProject.name='Contact_Tracing'
+include ':app'

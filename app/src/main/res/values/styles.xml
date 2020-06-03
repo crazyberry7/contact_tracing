@@ -1,0 +1,24 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary"> @color/black</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+    <!-- At-Risk Health Bar Styles -->
+    <style name="Healthy_1_to_25">
+        <item name="colorAccent">@android:color/holo_green_light</item>
+    </style>
+    <style name="Fair_25_to_50">
+        <item name="colorAccent">@color/yellow</item>
+    </style>
+    <style name="Unhealthy_50_to_75">
+        <item name="colorAccent">@android:color/holo_orange_light</item>
+    </style>
+    <style name="Sickly_75_to_100">
+        <item name="colorAccent">@android:color/holo_red_light</item>
+    </style>
+</resources>

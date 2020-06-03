@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Contact_Tracing</string>
+    <string name="title_activity_display_statistics">DisplayStatisticsActivity</string>
+    <string name="title_home">Hotspots</string>
+    <string name="title_dashboard">World News</string>
+    <string name="title_notifications">My Info</string>
+    <string name="title_num_contacts">Contacts</string>
+    <string name="title_num_unique_contacts">Unique Contacts</string>
+</resources>
