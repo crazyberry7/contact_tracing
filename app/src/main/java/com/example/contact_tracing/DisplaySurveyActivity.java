@@ -38,14 +38,9 @@ public class DisplaySurveyActivity extends AppCompatActivity {
         SurveyView survey = findViewById(R.id.survey_view);
         SurveyTheme configuration = new SurveyTheme(
                 ContextCompat.getColor(this, R.color.white),
-                ContextCompat.getColor(this, R.color.cyan_normal),
-                ContextCompat.getColor(this, R.color.cyan_text)
+                ContextCompat.getColor(this, R.color.teal),
+                ContextCompat.getColor(this, R.color.teal)
         );
-
-        Button cancelButton = findViewById(R.id.headerCancelButton);
-        TypedValue outValue = new TypedValue();
-        this.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-        cancelButton.setBackgroundResource(outValue.resourceId);
         survey.start(task, configuration);
     }
 
