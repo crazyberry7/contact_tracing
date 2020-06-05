@@ -7,92 +7,101 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="330dp"
-        android:layout_height="105dp"
-        android:orientation="vertical"
+        android:layout_width="409dp"
+        android:layout_height="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        android:weightSum="2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.523">
 
 
         <TextView
             android:id="@+id/headingText"
-            android:layout_width="79dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="48dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="At Risk?"
             android:textAppearance="?attr/textAppearanceSubtitle2"
             android:textColor="?android:attr/textColorSecondary"
-
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.259"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.14"
-            tools:ignore="RtlHardcoded" />
+            app:layout_constraintVertical_bias="0.225" />
 
         <ProgressBar
             android:id="@+id/atRiskHealthBar"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="152dp"
+            android:layout_width="141dp"
             android:layout_height="33dp"
-            android:layout_marginStart="80dp"
             android:indeterminateTint="@color/colorPrimaryDark"
             android:indeterminateTintMode="src_in"
             android:progress="70"
             android:theme="@style/Unhealthy_50_to_75"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/headingText" />
-
-        <TextView
-            android:id="@+id/subHeaderText"
-            style="@style/Base.TextAppearance.AppCompat.Subhead"
-            android:layout_width="70dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="16dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="16dp"
-            android:text="Yes"
-            android:textAppearance="?attr/textAppearanceHeadline5"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/subHeaderText2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />
-
-        <TextView
-            android:id="@+id/subHeaderText2"
-            style="@style/Base.TextAppearance.AppCompat.Subhead"
-            android:layout_width="70dp"
-            android:layout_height="28dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="16dp"
-            android:text="70%"
-            android:textAppearance="?attr/textAppearanceHeadline5"
-            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.392"
-
-            app:layout_constraintStart_toEndOf="@+id/atRiskHealthBar"
+            app:layout_constraintHorizontal_bias="0.432"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.714" />
+            app:layout_constraintVertical_bias="0.719" />
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="30dp"
             android:layout_height="34dp"
-            android:layout_marginBottom="76dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/atRiskHealthBar"
-            app:layout_constraintHorizontal_bias="0.975"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.226"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/headingText"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.714"
             app:srcCompat="@drawable/thermometer" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="68dp"
+            android:layout_height="89dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.753"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <TextView
+                android:id="@+id/subHeaderText"
+                style="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14.5dp"
+                android:gravity="center"
+                android:text="Yes"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/subHeaderText2"
+                style="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="11dp"
+                android:gravity="center"
+                android:text="70%"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subHeaderText" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

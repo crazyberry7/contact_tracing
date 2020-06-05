@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@android:color/white</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="background">#212121</color>
+    <color name="colorPrimaryDark">#00997a</color>
+    <color name="colorAccent">#00997a</color>
+    <color name="background">#00997a</color>
+
+    <color name="bottom_nav_highlight">#2a2a2a</color>
     <color name="white">#FFFFFF</color>
     <color name="yellow">#FFFF00</color>
     <color name="fuchsia">#FF00FF</color>
@@ -20,4 +22,5 @@
     <color name="blue">#0000FF</color>
     <color name="navy">#000080</color>
     <color name="black">#000000</color>
+    <color name="blue_green"> #00997a</color>
 </resources>

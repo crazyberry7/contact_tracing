@@ -3,11 +3,17 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary"> @color/black</item>
+        <item name="colorPrimary"> @color/white</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
     </style>
+
+    <!-- Bottom Navigation Bar -->
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/bottom_nav_highlight</item>
+        <item name="android:textColorSecondary">@color/gray</item>
+    </style>
+    k
     <!-- At-Risk Health Bar Styles -->
     <style name="Healthy_1_to_25">
         <item name="colorAccent">@android:color/holo_green_light</item>
