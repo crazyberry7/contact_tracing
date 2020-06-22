@@ -1,4 +1,4 @@
-package com.example.contact_tracing.services;
+package com.covid.contact_tracing.services;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -10,8 +10,8 @@ import android.location.Location;
 import android.os.IBinder;
 import android.os.Looper;
 
-import com.example.contact_tracing.utils.Installation;
-import com.example.contact_tracing.models.LocationTimestamp;
+import com.covid.contact_tracing.models.LocationTimestamp;
+import com.covid.contact_tracing.utils.Installation;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -30,7 +30,7 @@ public class ForegroundLocationService extends Service {
     private Location mCurrentLocation;
     private static final int FOREGROUND_LOCATION_SERVICE = 911;
     private Context context;
-    private Thread workerThread;
+
     public ForegroundLocationService() {
         this.context = this;
     }
@@ -43,25 +43,7 @@ public class ForegroundLocationService extends Service {
 
     @Override
     public void onCreate() {
-        /**workerThread = new Thread(new Runnable() {
-            public void run() {
-                Looper.prepare();
-                //getMainLooper().prepare();
-                // Start foreground service
-                startForeground(FOREGROUND_LOCATION_SERVICE, getNotification());
-                boolean running = true;
-                while (running) {
-                    // Collect location and store in Firebase here
-
-                    if (Thread.interrupted()) {
-                        return;
-                    }
-                }
-
-            }
-        });
-         **/
-
+        super.onCreate();
     }
 
     @Override
@@ -75,7 +57,7 @@ public class ForegroundLocationService extends Service {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         FusedLocationProviderClient mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
         LocationRequest locationRequest = LocationRequest.create()
-                .setInterval(5000)
+                .setInterval(10000)
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         LocationCallback mLocationCallback = new LocationCallback() {
             @Override
@@ -107,8 +89,6 @@ public class ForegroundLocationService extends Service {
         mFusedLocationClient.requestLocationUpdates(locationRequest, mLocationCallback, Looper.myLooper());
         return START_NOT_STICKY;
     }
-
-
 
     @Override
     public void onDestroy() {

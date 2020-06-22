@@ -41,7 +41,7 @@
                     android:autoSizeMinTextSize="12sp"
                     android:autoSizeStepGranularity="1sp"
                     android:autoSizeTextType="uniform"
-                    android:text="0"
+                    android:text="-"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     />
             </LinearLayout>
@@ -79,7 +79,7 @@
                     android:autoSizeMinTextSize="12sp"
                     android:autoSizeStepGranularity="1sp"
                     android:autoSizeTextType="uniform"
-                    android:text="0"
+                    android:text="-"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     />
             </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.contact_tracing.ui.notifications;
+package com.covid.contact_tracing.ui.notifications;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

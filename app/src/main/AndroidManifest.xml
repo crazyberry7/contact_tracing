@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.contact_tracing">
+    package="com.covid.contact_tracing">
 
     <uses-permission
         android:name="android.permission.INTERNET"
@@ -15,9 +15,8 @@
     <uses-permission
         android:name="android.permission.ACCESS_FINE_LOCATION"
         tools:remove="android:maxSdkVersion" />
-    <uses-permission
-        android:name="android.permission.ACCESS_BACKGROUND_LOCATION"
-        tools:remove="android:maxSdkVersion" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
@@ -27,18 +26,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DisplaySurveyActivity"></activity>
+        <activity
+            android:name="com.covid.contact_tracing.DisplaySurveyActivity"
+            android:launchMode="singleInstance"/>
 
         <service
-            android:name=".services.ForegroundLocationService"
+            android:name="com.covid.contact_tracing.services.ForegroundLocationService"
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".services.ComputationsService"
+            android:name="com.covid.contact_tracing.services.ComputationsService"
             android:exported="false" />
 
         <activity
-            android:name=".DisplayStatisticsActivity"
+            android:name="com.covid.contact_tracing.DisplayStatisticsActivity"
             android:label="@string/title_activity_display_statistics">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

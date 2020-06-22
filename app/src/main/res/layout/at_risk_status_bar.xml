@@ -39,7 +39,7 @@
             android:layout_height="33dp"
             android:indeterminateTint="@color/colorPrimaryDark"
             android:indeterminateTintMode="src_in"
-            android:progress="70"
+            android:progress="0"
             android:theme="@style/Unhealthy_50_to_75"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,13 +72,13 @@
             app:layout_constraintVertical_bias="1.0">
 
             <TextView
-                android:id="@+id/subHeaderText"
+                android:id="@+id/atRiskBoolean"
                 style="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14.5dp"
                 android:gravity="center"
-                android:text="Yes"
+                android:text="Nah"
                 android:textAppearance="?attr/textAppearanceHeadline5"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,20 +87,20 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/subHeaderText2"
+                android:id="@+id/atRiskPercentage"
                 style="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="11dp"
                 android:gravity="center"
-                android:text="70%"
+                android:text="0%"
                 android:textAppearance="?attr/textAppearanceHeadline5"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subHeaderText" />
+                app:layout_constraintTop_toBottomOf="@+id/atRiskBoolean" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

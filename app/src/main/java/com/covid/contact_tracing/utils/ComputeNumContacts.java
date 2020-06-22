@@ -1,12 +1,12 @@
-package com.example.contact_tracing.utils;
+package com.covid.contact_tracing.utils;
 
 import android.content.Context;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
-import com.example.contact_tracing.DisplayStatisticsActivity;
-import com.example.contact_tracing.models.LocationTimestamp;
+import com.covid.contact_tracing.DisplayStatisticsActivity;
+import com.covid.contact_tracing.models.LocationTimestamp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,10 +30,9 @@ import java.util.Stack;
 public class ComputeNumContacts {
     private String appId;
     private DatabaseReference mDatabase;
-
     private HashSet<String> seenContacts = new HashSet<>();
     private Long latestProcessedTime;
-
+    private Context computationsServiceContext;
     // Variables to store data from Firebase
     private Long latestSync = null;
     private Integer numUniqueContacts;
@@ -41,7 +40,7 @@ public class ComputeNumContacts {
     private HashSet<String> keys = new HashSet<>();
     private ArrayList<LocationTimestamp> allLocationTimestamps = new ArrayList<>();
     private ArrayList<LocationTimestamp> userLocationTimestamps = new ArrayList<>();
-    private Context computationsServiceContext;
+
     public ComputeNumContacts(String appId, DatabaseReference database, Context context) {
         this.appId = appId;
         this.mDatabase = database;
@@ -54,15 +53,10 @@ public class ComputeNumContacts {
     public void calcNumContacts() {
         getLatestSyncAndContactInfo();
     }
-    public int getNumContacts() {
-        return numContacts;
-    }
 
-    public int getNumUniqueContacts() {
-        return numUniqueContacts;
-    }
-
-    /** Helpers **/
+    /**
+     * Helpers
+     **/
     private void getLatestSyncAndContactInfo() {
         Query retrieveLatestTimestamp = mDatabase.child("Users").child(appId);
         // Retrieve latest sync time
@@ -86,7 +80,6 @@ public class ComputeNumContacts {
 
             }
         });
-        //return latestSync[0];
     }
 
     /**
@@ -211,51 +204,51 @@ public class ComputeNumContacts {
      * Update user's metrics in Firebase via call to updateUserData()
      */
     private void processLocationTimestamps(final ArrayList<LocationTimestamp> userTimestamps, final ArrayList<LocationTimestamp> allTimestamps, final Long currTime) {
-        int index = 0;
-        boolean reachedEnd = false;
-        for (LocationTimestamp userLocationTimestamp : userTimestamps) {
-            Long userTime = userLocationTimestamp.timestamp;
-            Double lat1 = userLocationTimestamp.lat;
-            Double lon1 = userLocationTimestamp.lon;
+        // Update latest sync time
+        latestProcessedTime = currTime;
+        if (!allTimestamps.isEmpty()) {
+            int index = 0;
+            boolean reachedEnd = false;
+            for (LocationTimestamp userLocationTimestamp : userTimestamps) {
+                Long userTime = userLocationTimestamp.timestamp;
+                Double lat1 = userLocationTimestamp.lat;
+                Double lon1 = userLocationTimestamp.lon;
+                LocationTimestamp otherUser = allTimestamps.get(index);
+                Long otherUserTime = otherUser.timestamp;
+                while (!userTime.equals(otherUserTime)) {
+                    index += 1;
+                    if (index >= allLocationTimestamps.size()) {
+                        break;
+                    }
+                    otherUser = allLocationTimestamps.get(index);
+                    otherUserTime = otherUser.timestamp;
 
-            LocationTimestamp otherUser = allTimestamps.get(index);
-            Long otherUserTime = otherUser.timestamp;
-
-
-            while (!userTime.equals(otherUserTime)) {
-                index += 1;
+                }
                 if (index >= allLocationTimestamps.size()) {
                     break;
                 }
-                otherUser = allLocationTimestamps.get(index);
-                otherUserTime = otherUser.timestamp;
-
-            }
-            if (index >= allLocationTimestamps.size()) {
-                break;
-            }
-            while (userTime.equals(otherUserTime)) {
-                Double lat2 = otherUser.lat;
-                Double lon2 = otherUser.lon;
-                // check if within 6 feet
-                double dist = distance(lat1, lon1, lat2, lon2);
-                if (dist <= 6.0d) {
-                    numContacts += 1;
-                    seenContacts.add(otherUser.userId);
+                while (userTime.equals(otherUserTime)) {
+                    Double lat2 = otherUser.lat;
+                    Double lon2 = otherUser.lon;
+                    // check if within 6 feet
+                    double dist = distance(lat1, lon1, lat2, lon2);
+                    if (dist <= 6.0d) {
+                        numContacts += 1;
+                        seenContacts.add(otherUser.userId);
+                    }
+                    index += 1;
+                    otherUser = allLocationTimestamps.get(index);
+                    otherUserTime = otherUser.timestamp;
                 }
-                index += 1;
-                otherUser = allLocationTimestamps.get(index);
-                otherUserTime = otherUser.timestamp;
             }
-
-
         }
-        numUniqueContacts = seenContacts.size();
-        // Update latest sync time
-        latestProcessedTime = currTime;
-        updateUserData();
+        try {
+            numUniqueContacts = seenContacts.size();
+            updateUserData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
 
     private void updateUserData() {
         // update number of total contacts, number of unique contacts
@@ -277,12 +270,14 @@ public class ComputeNumContacts {
             broadCastIntent.setAction(DisplayStatisticsActivity.BROADCAST_ACTION);
             broadCastIntent.putExtra("numContacts", numContacts);
             broadCastIntent.putExtra("numUniqueContacts", numUniqueContacts);
+            broadCastIntent.putExtra("appId", appId);
             context.sendBroadcast(broadCastIntent);
             //stopSelf();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     private static double distance(double lat1, double lon1, double lat2, double lon2) {
         if ((lat1 == lat2) && (lon1 == lon2)) {
             return 0;

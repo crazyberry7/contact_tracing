@@ -1,4 +1,4 @@
-package com.example.contact_tracing.services;
+package com.covid.contact_tracing.services;
 
 import android.app.IntentService;
 import android.app.Service;
@@ -9,9 +9,8 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.util.Log;
 
-import com.example.contact_tracing.DisplayStatisticsActivity;
-import com.example.contact_tracing.utils.ComputeNumContacts;
-import com.example.contact_tracing.utils.Installation;
+import com.covid.contact_tracing.utils.ComputeNumContacts;
+import com.covid.contact_tracing.utils.Installation;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -73,32 +72,10 @@ public class ComputationsService extends Service {
                 ref.child("lat").setValue(lat);
                 ref.child("lon").setValue(lon);
 
-
                 ComputeNumContacts computeNumContacts = new ComputeNumContacts(appId, mDatabase, context);
                 computeNumContacts.calcNumContacts();
-                //int numUniqueContacts = computeNumContacts.getNumUniqueContacts();
-                //int numContacts = computeNumContacts.getNumContacts();
-                //sendMyBroadcast(numContacts, numUniqueContacts);
-
             }
         };
         mFusedLocationClient.requestLocationUpdates(locationRequest, mLocationCallback, Looper.myLooper());
-    }
-
-    public void sendMyBroadcast(int numContacts, int numUniqueContacts) {
-        try {
-            Intent broadCastIntent = new Intent();
-            broadCastIntent.setAction(DisplayStatisticsActivity.BROADCAST_ACTION);
-            // uncomment this line if you want to send data
-            // TO:DO send data back
-            // 1) Total Contacts
-            // 2) # Unique Contacts
-            broadCastIntent.putExtra("numContacts", numContacts);
-            broadCastIntent.putExtra("numUniqueContacts", numUniqueContacts);
-            sendBroadcast(broadCastIntent);
-            //stopSelf();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

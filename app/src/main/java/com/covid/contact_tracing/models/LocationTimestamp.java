@@ -1,4 +1,4 @@
-package com.example.contact_tracing.models;
+package com.covid.contact_tracing.models;
 
 public class LocationTimestamp {
     public String userId;

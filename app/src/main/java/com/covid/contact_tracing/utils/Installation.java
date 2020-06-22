@@ -1,10 +1,10 @@
-package com.example.contact_tracing.utils;
+package com.covid.contact_tracing.utils;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.example.contact_tracing.models.AnonymousUser;
-import com.example.contact_tracing.models.LocationTimestamp;
+import com.covid.contact_tracing.models.AnonymousUser;
+import com.covid.contact_tracing.models.LocationTimestamp;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
@@ -26,7 +26,7 @@ public class Installation {
         if (sID == null) {
             mDatabase = database;
             File installation = new File(context.getFilesDir(), INSTALLATION);
-            //installation.delete();
+            installation.delete();
             try {
                 if (!installation.exists()) {
                     writeInstallationFile(installation);
@@ -71,7 +71,7 @@ public class Installation {
         FileOutputStream out = new FileOutputStream(installation);
         sID = UUID.randomUUID().toString();
         // Write new user entry to Firebase
-        AnonymousUser newUser = new AnonymousUser(sID, new ArrayList<LocationTimestamp>(), false,
+        AnonymousUser newUser = new AnonymousUser(sID, new ArrayList<LocationTimestamp>(), false, 0,
                 Instant.now().getEpochSecond(), 0, 0, new ArrayList<String>());
         DatabaseReference writeUserRef = mDatabase.child("Users").child(sID);
         writeUserRef.removeValue();
