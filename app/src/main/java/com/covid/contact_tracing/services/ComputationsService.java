@@ -73,7 +73,7 @@ public class ComputationsService extends Service {
                 ref.child("lon").setValue(lon);
 
                 ComputeNumContacts computeNumContacts = new ComputeNumContacts(appId, mDatabase, context);
-                computeNumContacts.calcNumContacts();
+                computeNumContacts.computeNumContacts();
             }
         };
         mFusedLocationClient.requestLocationUpdates(locationRequest, mLocationCallback, Looper.myLooper());

@@ -37,6 +37,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.*;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,7 +50,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class DisplayStatisticsActivity extends AppCompatActivity {
-    public static final String BROADCAST_ACTION = "com.example.contact_tracing";
+    public static final String BROADCAST_ACTION = "com.covid.contact_tracing";
     static final int DISPLAY_SURVEY_ACTIVITY = 5;
     static final int REQUEST_FINE_LOCATION = 3;
     static final int REQUEST_BACKGROUND_LOCATION = 4;
@@ -162,7 +163,7 @@ public class DisplayStatisticsActivity extends AppCompatActivity {
     private void startComputationsService() {
         try {
             Intent initialComputationServiceIntent = new Intent(this, ComputationsService.class);
-            startForegroundService(initialComputationServiceIntent);
+            startService(initialComputationServiceIntent);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -308,6 +309,9 @@ public class DisplayStatisticsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Unused, but kept for reference
+     */
     private void signInAnonymously() {
         mAuth.signInAnonymously()
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

@@ -50,7 +50,7 @@ public class ComputeNumContacts {
     /**
      * Calculates number of people in contact (within 6 feet, at the same time, down to second)
      */
-    public void calcNumContacts() {
+    public void computeNumContacts() {
         getLatestSyncAndContactInfo();
     }
 
@@ -243,7 +243,7 @@ public class ComputeNumContacts {
             }
         }
         try {
-            numUniqueContacts = seenContacts.size();
+            numUniqueContacts = seenContacts.size()-1;
             updateUserData();
         } catch (Exception e) {
             e.printStackTrace();
@@ -272,7 +272,6 @@ public class ComputeNumContacts {
             broadCastIntent.putExtra("numUniqueContacts", numUniqueContacts);
             broadCastIntent.putExtra("appId", appId);
             context.sendBroadcast(broadCastIntent);
-            //stopSelf();
         } catch (Exception e) {
             e.printStackTrace();
         }

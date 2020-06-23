@@ -26,22 +26,13 @@ public class Installation {
         if (sID == null) {
             mDatabase = database;
             File installation = new File(context.getFilesDir(), INSTALLATION);
-            installation.delete();
+            //installation.delete();
             try {
                 if (!installation.exists()) {
                     writeInstallationFile(installation);
                 } else {
                     sID = readInstallationFile(installation);
                 }
-
-                /**
-                 //*  Location Update to Firebase *
-                 String key = mDatabase.child(sID).push().getKey();
-                 Map<String, Object> hopperUpdates = new HashMap<>();
-                 LocationTimestamp locationTimestamp = new LocationTimestamp(35.444, 35.566, Instant.now().getEpochSecond());
-                 hopperUpdates.put(key, locationTimestamp);
-                 mDatabase.child(sID).child("locationUpdates").updateChildren(hopperUpdates);
-                 **/
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
